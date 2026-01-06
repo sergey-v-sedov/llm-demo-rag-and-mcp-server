@@ -1,0 +1,25 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: llm-demo-rag-and-mcp-server
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo
+    username: app
+    password: password
+  ai:
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        remove-existing-vector-store-table: true
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1024
+    ollama:
+      embedding:
+        options:
+          model: mxbai-embed-large
+    mcp:
+      server:
+        type: SYNC
+        protocol: STREAMABLE
